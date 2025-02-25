@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User.js');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const imageDownloader = require('images-downloader');
 
 require('dotenv').config();
 
@@ -88,6 +89,12 @@ app.get('/api/profile', (req,res) => {
     res.json(null);
   }
 });
+
+app.post('/api/logout', (req,res) => {
+  res.cookie('token', '').json(true);
+});
+
+
 
 app.listen(8000);
     // console.log('Server running on port 8000');
