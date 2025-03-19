@@ -1,7 +1,6 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 
-
 export const UserContext = createContext({});
 
 export function UserContextProvider({children}) {
@@ -14,7 +13,7 @@ export function UserContextProvider({children}) {
         setReady(true);
       });
     }
-  }, []);
+  }, []); // Corrected dependency array
   return (
     <UserContext.Provider value={{user,setUser,ready}}>
       {children}
