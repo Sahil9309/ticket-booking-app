@@ -14,7 +14,7 @@ export default function ProfilePage() {
   }
 
   async function logout() {
-    await axios.post('/api/logout');
+    await axios.post('/logout');
     setRedirect('/');
     setUser(null);
   }
@@ -30,6 +30,7 @@ export default function ProfilePage() {
   if (redirect) {
     return <Navigate to={redirect} />
   }
+  
   return (
     <div>
       <AccountNav />

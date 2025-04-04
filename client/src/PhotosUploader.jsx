@@ -1,48 +1,40 @@
-import { useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
+import {useState} from "react";
+import Image from "./Image.jsx";
 
 export default function PhotosUploader({addedPhotos,onChange}) {
-    const [photoLink,setPhotoLink] = useState('');
-    const [uploadError, setUploadError] = useState('');
-
-    async function addPhotoByLink(ev) {
-      ev.preventDefault();
-      setUploadError('');
-      try {
-        const {data:filename} = await axios.post('/api/upload-by-link', {link: photoLink});
-        onChange(prev => [...prev, filename]);
-        setPhotoLink('');
-      } catch (error) {
-        setUploadError('Failed to upload image. Please try again.');
-        console.error('Upload error:', error);
-      }
+  const [photoLink,setPhotoLink] = useState('');
+  async function addPhotoByLink(ev) {
+    ev.preventDefault();
+    const {data:filename} = await axios.post('/api/upload-by-link', {link: photoLink});
+    onChange(prev => {
+      return [...prev, filename];
+    });
+    setPhotoLink('');
+  }
+  function uploadPhoto(ev) {
+    const files = ev.target.files;
+    const data = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      data.append('photos', files[i]);
     }
-
-    async function uploadPhoto(ev) {
-      const files = ev.target.files;
-      const data = new FormData();
-      for (let i = 0; i < files.length; i++) {
-        data.append('photos', files[i]);
-      }
-      try {
-        const {data:filenames} = await axios.post('/api/upload', data, {
-          headers: {'Content-type':'multipart/form-data'}
-        });
-        onChange(prev => [...prev, ...filenames]);
-      } catch (error) {
-        setUploadError('Failed to upload photos. Please try again.');
-        console.error('Upload error:', error);
-      }
-    }
-    function removePhoto(ev,filename){
-      ev.preventDefault();
-      onChange([...addedPhotos.filter(photo => photo !== filename)]);
-    }
-
-    function selectAsMainPhoto(ev,filename) {
-      ev.preventDefault(); 
-      onChange([filename,...addedPhotos.filter(photo => photo !== filename)])
-    }
+    axios.post('/api/upload', data, {
+      headers: {'Content-type':'multipart/form-data'}
+    }).then(response => {
+      const {data:filenames} = response;
+      onChange(prev => {
+        return [...prev, ...filenames];
+      });
+    })
+  }
+  function removePhoto(ev,filename) {
+    ev.preventDefault();
+    onChange([...addedPhotos.filter(photo => photo !== filename)]);
+  }
+  function selectAsMainPhoto(ev,filename) {
+    ev.preventDefault();
+    onChange([filename,...addedPhotos.filter(photo => photo !== filename)]);
+  }
     return(
         <>
         <div className="flex gap-2">
@@ -57,15 +49,12 @@ export default function PhotosUploader({addedPhotos,onChange}) {
                 Add&nbsp;photo
             </button>
         </div>
-        {uploadError && (
-            <div className="text-red-500 text-sm mt-2">{uploadError}</div>
-        )}
         <div className="mt-2 grid gap-2 grid-cols-3 lg:grid-cols-7">  
             {addedPhotos?.length > 0 && addedPhotos.map(link => (
                 <div key={link} className="h-32 flex relative">
                     <img
                         className="rounded-2xl w-full object-cover"
-                        src={`http://localhost:8000/uploads/${link}`}
+                        src={`http://localhost:4000/uploads/${link}`}
                         alt=""
                     />
                     <button onClick={ev => removePhoto(ev,link)} className='cursor-pointer absolute bottom-1 right-1 text-white bg-gray-900 bg-opacity-50 rounded-xl py-1 px-2'>

@@ -35,7 +35,7 @@ export default function PlacesFormPage() {
             setCheckIn(data.checkIn || '');
             setCheckOut(data.checkOut || '');
             setMaxPeople(data.maxPeople || 1);
-            setPrice(data.price)
+            setPrice(data.price || 100);
         });
     }, [id]);
 
@@ -80,23 +80,23 @@ export default function PlacesFormPage() {
     }
 
     return(
-        <div className='px-5'>
+        <div className='p-4'>
             <AccountNav/>
             <form onSubmit={savePlace}>
                 {preInput('Title', 'add title for your place')}
                 <input type="text"
-                        value={title} onChange={ev => setTitle(ev.target.value)}
+                        value={title || ''} onChange={ev => setTitle(ev.target.value)}
                         placeholder="e.g. Cozy Coastal Cottage Steps from the Sand"
                         className="w-full border my-1 py-2 px-3 rounded-2xl" />
                 {preInput('Address', 'add address of your place')}
-                <input type="text" value={address} onChange={ev => setAddress(ev.target.value)}
+                <input type="text" value={address || ''} onChange={ev => setAddress(ev.target.value)}
                         placeholder="address"
                         className="w-full border my-1 py-2 px-3 rounded-2xl" />
                 {preInput('Photos', 'add photos of the place')}
                     <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
                 {preInput('Description', 'add description of the place')}
                     <textarea
-                        value={description} onChange={ev => setDescription(ev.target.value)}
+                        value={description || ''} onChange={ev => setDescription(ev.target.value)}
                         className="w-full border my-1 py-2 rounded-2xl" placeholder="add description of the place" 
                         style={{ height: '140px' }} // Added inline style for height
                     />
@@ -106,34 +106,34 @@ export default function PlacesFormPage() {
                     </div>
                         {preInput('Extra info', 'add rules to be followed at your place')}
                     <textarea
-                        value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)}
+                        value={extraInfo || ''} onChange={ev => setExtraInfo(ev.target.value)}
                         className="w-full border my-1 py-2 rounded-2xl" placeholder="add description of the place" 
                         style={{ height: '140px' }} // Added inline style for height
                     />
-                        {preInput('Chek in&out', 'max people')}
+                        {preInput('Check in & out', 'max people')}
                         <div className="grid gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
                             <div>
                                 <h3 className="mt-2 -mb-1">Check in time</h3>
                                 <input type="text"
-                                    value={checkIn} onChange={ev => setCheckIn(ev.target.value)}
+                                    value={checkIn || ''} onChange={ev => setCheckIn(ev.target.value)}
                                     className="mt-1 border p-1 rounded-xl" placeholder="12:00 pm" />
                             </div>
                             <div>
                                 <h3>Check out time</h3>
                                 <input type="text"
-                                    value={checkOut} onChange={ev => setCheckOut(ev.target.value)}
+                                    value={checkOut || ''} onChange={ev => setCheckOut(ev.target.value)}
                                     className="mt-1 border p-1 rounded-xl" placeholder="12:00 pm" />
                             </div>
                             <div>
                                 <h3>max people</h3>
                                 <input type="number"
-                                value={maxPeople} onChange={ev => setMaxPeople(ev.target.value)}
+                                value={maxPeople || 1} onChange={ev => setMaxPeople(ev.target.value)}
                                 className="mt-1 border p-1 rounded-xl" min='1' placeholder="0" />
                             </div>
                             <div>
                                 <h3>Price per night</h3>
                                 <input type="number"
-                                value={price} onChange={ev => setPrice(ev.target.value)}
+                                value={price || 100} onChange={ev => setPrice(ev.target.value)}
                                 className="mt-1 border p-1 rounded-xl" min='100' placeholder="0" />
                             </div>
                         </div>
