@@ -20,6 +20,6 @@ export default function BookingDates({booking,className}) {
         </svg>
         {format(new Date(booking.checkOut), 'yyyy-MM-dd')}
       </div>
-    </div>
+    </div>  
   );
 }

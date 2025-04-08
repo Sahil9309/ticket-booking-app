@@ -16,10 +16,14 @@ export default function BookingsPage() {
   return (
     <div>
       <AccountNav />
-      <div>
+      <div className="mt-8 mx-16">
         {bookings?.length > 0 && bookings.map(booking => (
-          <Link to={`/account/bookings/${booking._id}`} className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden">
-            <div className="w-48">
+          <Link 
+            key={booking._id}
+            to={`/account/bookings/${booking._id}`} 
+            className="flex gap-4 bg-gray-300 rounded-2xl overflow-hidden mb-4"
+          >
+            <div className="w-48 h-32">
               <PlaceImg place={booking.place} />
             </div>
             <div className="py-3 pr-3 grow">

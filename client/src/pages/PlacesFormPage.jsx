@@ -80,7 +80,7 @@ export default function PlacesFormPage() {
     }
 
     return(
-        <div className='p-4'>
+        <div className="mx-16"> {/* Added margin from both sides */}
             <AccountNav/>
             <form onSubmit={savePlace}>
                 {preInput('Title', 'add title for your place')}
@@ -101,7 +101,7 @@ export default function PlacesFormPage() {
                         style={{ height: '140px' }} // Added inline style for height
                     />
                 {preInput('Perks', 'select perks of your place')}
-                    <div className="grid gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-7">
+                    <div className="grid gap-2 grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
                 <Perks selected={perks} onChange={setPerks} />
                     </div>
                         {preInput('Extra info', 'add rules to be followed at your place')}
