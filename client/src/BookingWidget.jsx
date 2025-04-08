@@ -25,13 +25,18 @@ export default function BookingWidget({place}) {
   }
 
   async function bookThisPlace() {
-    const response = await axios.post('/api/bookings', {
-      checkIn,checkOut,numberOfPeople,name,phone,
-      place:place._id,
-      price:numberOfNights * place.price,
-    });
-    const bookingId = response.data._id;
-    setRedirect(`/account/bookings/${bookingId}`);
+    try {
+      const response = await axios.post('/api/bookings', { // Ensure the base URL is correct
+        checkIn, checkOut, numberOfPeople, name, phone,
+        place: place._id,
+        price: numberOfNights * place.price,
+      });
+      const bookingId = response.data._id;
+      setRedirect(`/account/bookings/${bookingId}`);
+    } catch (error) {
+      console.error("Error booking the place:", error); // Log the error for debugging
+      alert("Failed to book the place. Please try again later."); // Notify the user
+    }
   }
 
   if (redirect) {
@@ -58,21 +63,21 @@ export default function BookingWidget({place}) {
           </div>
         </div>
         <div className="py-3 px-4 border-t">
-          <label>Number of guests:</label>
+          <label>Number of personss:</label>
           <input type="number"
-                 value={numberOfPeople}
+                 value={numberOfPeople || ''}
                  onChange={ev => setNumberOfPeople(ev.target.value)}/>
         </div>
         {numberOfNights > 0 && (
           <div className="py-3 px-4 border-t">
             <label>Your full name: </label>
             <input type="text"
-                   value={name}
+                   value={name || ''}
                    onChange={ev => setName(ev.target.value)}/>
             <div className="mt-2">
               <label>Phone number: </label>
-              <input type="Number"
-                     value={phone}
+              <input type="number"
+                     value={phone || ''}
                      onChange={ev => setPhone(ev.target.value)}/>
             </div>
           </div>

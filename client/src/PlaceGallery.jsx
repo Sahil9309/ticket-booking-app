@@ -16,19 +16,25 @@ export default function PlaceGallery({ place }) {
             >
               {/* Close icon */}
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-6 h-6" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                  clipRule="evenodd"
+                />
               </svg>
               Close photos
             </button>
           </div>
-          {place?.photos?.map((photo, index) => (
-            <div key={index} className="relative">
-              <Image src={photo} alt="" />
-              <div className="absolute bottom-2 right-2 bg-black/60 text-white text-sm px-2 py-1 rounded-full">
-                {index + 1}/{place.photos.length}
+          <div className="grid grid-cols-2 gap-4">
+            {place?.photos?.map((photo, index) => (
+              <div key={index} className="relative">
+                <Image src={photo} alt="" className="w-full h-full object-cover" />
+                <div className="absolute bottom-2 right-2 bg-black/60 text-white text-sm px-2 py-1 rounded-full">
+                  {index + 1}/{place.photos.length}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
