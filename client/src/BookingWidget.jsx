@@ -86,7 +86,7 @@ export default function BookingWidget({place}) {
       <button onClick={bookThisPlace} className="bg-[#1E3A8A] p-2 w-full text-white rounded-2xl cursor-pointer mt-4">
         Book this place
         {numberOfNights > 0 && (
-          <span> ₹{numberOfNights * place.price}</span>
+          <span> ₹{numberOfNights * place.price * numberOfPeople}</span>
         )}
       </button>
     </div>
