@@ -63,7 +63,7 @@ export default function BookingWidget({place}) {
           </div>
         </div>
         <div className="py-3 px-4 border-t">
-          <label>Number of personss:</label>
+          <label>Number of persons:</label>
           <input type="number"
                  value={numberOfPeople || ''}
                  onChange={ev => setNumberOfPeople(ev.target.value)}/>
