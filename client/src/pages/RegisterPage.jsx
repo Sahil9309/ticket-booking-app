@@ -24,7 +24,7 @@ export default function RegisterPage() {
     <div className="mt-4 grow flex items-center justify-around">
       <div className="mb-64">
         <h1 className="text-3xl text-center mb-4">Register</h1>
-        {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+        <div className="text-red-500 text-center mb-4"></div>
         <form className="max-w-md mx-auto" onSubmit={registerUser}>
           <input type="text" 
             placeholder="Name" 
