@@ -45,7 +45,7 @@ export default function LoginPage() {
             value={password}
             onChange={ev => setPassword(ev.target.value)}
           />
-          <button className="bg-[#1E3A8A] p-2 w-full text-white rounded-2xl cursor-pointer">
+          <button className="bg-[#1E3A8A] p-2 w-full text-white rounded-2xl cursor-pointer mt-6">
             Login
           </button>
           <div className="text-center py-2 text-gray-500">
