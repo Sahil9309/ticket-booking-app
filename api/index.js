@@ -42,7 +42,8 @@ function getUserDataFromReq(req) {
           resolve(userData);
         });
       });
-    }    
+    }  
+
 app.get('/api/test', (req, res) => {
     res.json('test ok');
 });
@@ -59,8 +60,8 @@ app.post('/api/register', async (req,res) => {
   } catch (e) {
     res.status(422).json(e);
   }
-
 });
+
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   const userDoc = await User.findOne({ email });
@@ -113,6 +114,7 @@ app.post('/api/upload-by-link', async (req, res) => {
   }
 });
 
+// Modify the file upload endpoint as well
 app.post('/api/upload', async (req, res) => {
   try {
     const { photos } = req.body;
