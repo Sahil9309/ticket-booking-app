@@ -44,46 +44,47 @@ export default function BookingWidget({place}) {
   }
 
   return (
-    <div className="bg-white shadow p-4 rounded-2xl">
+    <div className="bg-white shadow p-4 rounded-2xl mt-4">
       <div className="text-2xl text-center">
         Price: ₹{place.price} / night
       </div>
       <div className="border rounded-2xl mt-4">
         <div className="flex">
           <div className="py-3 px-4">
-            <label>Check in:</label>
+            <label className="font-bold">Check in:</label>
             <input type="date"
                    value={checkIn}
                    onChange={ev => setCheckIn(ev.target.value)}/>
           </div>
           <div className="py-3 px-4 border-l">
-            <label>Check out:</label>
+            <label className="font-bold">Check out:</label>
             <input type="date" value={checkOut}
                    onChange={ev => setCheckOut(ev.target.value)}/>
           </div>
         </div>
         <div className="py-3 px-4 border-t">
-          <label>Number of persons:</label>
+          <label className="font-bold rounded-2xl">Number of persons: </label>
           <input type="number"
+                  min={1} max={place.maxPeople}
                  value={numberOfPeople || ''}
                  onChange={ev => setNumberOfPeople(ev.target.value)}/>
         </div>
         {numberOfNights > 0 && (
           <div className="py-3 px-4 border-t">
-            <label>Your full name: </label>
+            <label className="font-bold">Your full name: </label>
             <input type="text"
                    value={name || ''}
                    onChange={ev => setName(ev.target.value)}/>
             <div className="mt-2">
-              <label>Phone number: </label>
-              <input type="number"
+              <label className="font-bold">Phone number: </label>
+              <input type="text"
                      value={phone || ''}
                      onChange={ev => setPhone(ev.target.value)}/>
             </div>
           </div>
         )}
       </div>
-      <button onClick={bookThisPlace} className="bg-[#1E3A8A] p-2 w-full text-white rounded-2xl cursor-pointer mt-4">
+      <button onClick={bookThisPlace} className="bg-[#1E3A8A] p-2 w-full text-white rounded-2xl cursor-pointer mt-4 font-bold">
         Book this place
         {numberOfNights > 0 && (
           <span> ₹{numberOfNights * place.price * numberOfPeople}</span>

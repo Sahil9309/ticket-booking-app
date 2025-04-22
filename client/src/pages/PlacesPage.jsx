@@ -30,7 +30,7 @@ export default function PlacesPage() {
       to={'/account/places/' + place._id}
       className="flex cursor-pointer gap-4 bg-gray-300 shadow-black p-4 rounded-2xl mb-4"
     >
-      <div className="flex w-40 h-40 bg-gray-300 grow shrink-0">
+      <div className="flex w-40 h-40 bg-gray-300 rounded-2xl grow shrink-0">
         <PlaceImg place={place} />
       </div>
       <div className="grow-0 shrink">

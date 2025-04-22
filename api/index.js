@@ -7,9 +7,9 @@ const User = require('./models/User.js');
 const Place = require('./models/Place.js');
 const Booking = require('./models/Booking.js');
 const cookieParser = require('cookie-parser');
-const imageDownloader = require('image-downloader');
-const multer = require('multer');
-const fs = require('fs');
+//const imageDownloader = require('image-downloader');
+//const multer = require('multer');
+//const fs = require('fs');
 //const mime = require('mime-types');
 
 require('dotenv').config();
@@ -101,34 +101,28 @@ app.post('/api/logout', (req, res) => {
 
 app.post('/api/upload-by-link', async (req, res) => {
   try {
-    const { link } = req.body; // Expecting JSON with a "link" property
+    const { link } = req.body;
     if (!link) {
       return res.status(400).json({ error: 'No link provided' });
     }
-    const newName = 'photo' + Date.now() + '.jpg';
-    await imageDownloader.image({
-      url: link,
-      dest: __dirname + '/../uploads/' + newName,
-    });
-    res.json(newName);
+    // Instead of downloading, just send back the original link
+    res.json(link);
   } catch (error) {
     console.error('Upload error:', error);
-    res.status(500).json({ error: 'Failed to download image' });
+    res.status(500).json({ error: 'Failed to process image link' });
   }
 });
 
-const photosMiddleware = multer({ dest: __dirname + '/../uploads/' });
-app.post('/api/upload', photosMiddleware.array('photos', 100), async (req,res) => {
-  const uploadedFiles = [];
-  for(let i = 0; i < req.files.length; i++) {
-    const {path, originalname} = req.files[i];
-    const parts = originalname.split('.');
-    const ext = parts[parts.length - 1];
-    const newPath = path + '.' + ext;
-    fs.renameSync(path, newPath);
-    uploadedFiles.push(newPath.replace(__dirname + '/../uploads/', ''));
+app.post('/api/upload', async (req, res) => {
+  try {
+    const { photos } = req.body;
+    if (!photos || !Array.isArray(photos)) {
+      return res.status(400).json({ error: 'No photos provided' });
+    }
+    res.json(photos);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to process photos' });
   }
-  res.json(uploadedFiles);
 });
 
 app.post('/api/places', async (req, res) => {
