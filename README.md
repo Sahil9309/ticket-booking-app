@@ -37,9 +37,9 @@ ticket-booking-app/
 
 ---
 
-## ⚙️ Backend Setup
+⚙️ Backend & Frontend Setup
 
-1. **Navigate to backend directory:**
+**Navigate to project directory:**
 
 ```bash
 cd api
@@ -53,10 +53,15 @@ JWT_SECRET=your_jwt_secret
 
 node index.js
 
-⚛️ Frontend Setup (Vite + React)
+---
+##⚛️ Frontend Setup (Vite + React)
+2. **Navigate to frontend directory:**
+```bash
 cd client
 npm install
 npm run dev
+
+---
 
 
 
