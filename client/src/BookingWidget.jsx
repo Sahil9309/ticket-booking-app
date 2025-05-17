@@ -4,6 +4,7 @@ import axios from "axios";
 import {Navigate} from "react-router-dom";
 import {UserContext} from "./UserContext.jsx";
 
+
 export default function BookingWidget({place}) {
   const [checkIn,setCheckIn] = useState('');
   const [checkOut,setCheckOut] = useState('');
@@ -19,7 +20,7 @@ export default function BookingWidget({place}) {
     }
   }, [user]);
 
-  let numberOfNights = 0;
+  let numberOfNights = 1;
   if (checkIn && checkOut) {
     numberOfNights = differenceInCalendarDays(new Date(checkOut), new Date(checkIn));
   }
@@ -29,7 +30,7 @@ export default function BookingWidget({place}) {
       const response = await axios.post('/api/bookings', { // Ensure the base URL is correct
         checkIn, checkOut, numberOfPeople, name, phone,
         place: place._id,
-        price: numberOfNights * place.price,
+        price: numberOfNights * place.price * numberOfPeople,
       });
       const bookingId = response.data._id;
       setRedirect(`/account/bookings/${bookingId}`);
