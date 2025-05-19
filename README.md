@@ -70,25 +70,25 @@ npm run dev
 
 #### Home Page
 
-![Home Page](..screenshots/homepage.png)
+![Home Page](screenshots/homepage.png)
 
 #### Booking Page
 
-![Booking Page](.screenshots/booking-page.png)
+![Booking Page](screenshots/booking-page.png)
 
 #### Booking Information
 
-![Booking Information](.screenshots/booking-information.png)
+![Booking Information](screenshots/booking-information.png)
 
 #### Booking Widget
 
-![Booking Widget](.screenshots/booking-widget.png)
+![Booking Widget](screenshots/booking-widget.png)
 
 #### Place Form Page
 
-![Place Form Page](.screenshots/place-form-page.png)
+![Place Form Page](screenshots/place-form-page.png)
 
 #### Places Page
 
-![Places Page](.screenshots/places.png)
+![Places Page](screenshots/places.png)
 
