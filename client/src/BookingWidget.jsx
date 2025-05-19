@@ -20,23 +20,31 @@ export default function BookingWidget({place}) {
     }
   }, [user]);
 
-  let numberOfNights = 1;
+  // Always clamp numberOfPeople to allowed range for display and backend
+  let numberOfPeopleDisplay = Math.max(1, Math.min(Number(numberOfPeople), place.maxPeople));
+
+  let numberOfNights = 0;
   if (checkIn && checkOut) {
     numberOfNights = differenceInCalendarDays(new Date(checkOut), new Date(checkIn));
   }
 
   async function bookThisPlace() {
     try {
-      const response = await axios.post('/api/bookings', { // Ensure the base URL is correct
-        checkIn, checkOut, numberOfPeople, name, phone,
+      const response = await axios.post('/api/bookings', {
+        checkIn,
+        checkOut,
+        // Use the clamped value for backend
+        numberOfPeople: numberOfPeopleDisplay,
+        name,
+        phone,
         place: place._id,
-        price: numberOfNights * place.price * numberOfPeople,
+        price: numberOfNights * place.price * numberOfPeopleDisplay,
       });
       const bookingId = response.data._id;
       setRedirect(`/account/bookings/${bookingId}`);
     } catch (error) {
-      console.error("Error booking the place:", error); // Log the error for debugging
-      alert("Failed to book the place. Please try again later."); // Notify the user
+      console.error("Error booking the place:", error);
+      alert("Failed to book the place. Please try again later.");
     }
   }
 
@@ -65,10 +73,15 @@ export default function BookingWidget({place}) {
         </div>
         <div className="py-3 px-4 border-t">
           <label className="font-bold rounded-2xl">Number of persons: </label>
-          <input type="number"
-                  min={1} max={place.maxPeople}
-                 value={numberOfPeople || ''}
-                 onChange={ev => setNumberOfPeople(ev.target.value)}/>
+          <input
+            type="number"
+            min={1}
+            max={place.maxPeople}
+            value={numberOfPeople}
+            onChange={ev => setNumberOfPeople(ev.target.value)}
+          />
+          {/* Show the display value for clarity */}
+          <span className="ml-2 text-gray-500">({numberOfPeopleDisplay} people)</span>
         </div>
         {numberOfNights > 0 && (
           <div className="py-3 px-4 border-t">

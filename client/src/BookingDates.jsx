@@ -1,8 +1,19 @@
 import { differenceInCalendarDays, format } from "date-fns";
 
 export default function BookingDates({ booking, className }) {
+  // Always show at least 1 person if value is missing or invalid
+  let numberOfPeopleDisplay = 1;
+  if (
+    booking &&
+    booking.numberOfPeople !== undefined &&
+    !isNaN(Number(booking.numberOfPeople)) &&
+    Number(booking.numberOfPeople) > 0
+  ) {
+    numberOfPeopleDisplay = Number(booking.numberOfPeople);
+  }
+
   return (
-    <div className={"flex gap-4 items-center " + className}>
+    <div className={"flex gap-4 items-center " + (className || "")}>
       {/* User SVG and number of people */}
       <div className="flex items-center gap-1">
         <svg
@@ -19,7 +30,7 @@ export default function BookingDates({ booking, className }) {
             d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
           />
         </svg>
-        <span>{booking.numberOfPeople} people</span>
+        <span>{numberOfPeopleDisplay} people</span>
       </div>
 
       {/* Moon SVG and nights */}
