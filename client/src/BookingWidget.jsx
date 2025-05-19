@@ -34,8 +34,7 @@ export default function BookingWidget({place}) {
       const response = await axios.post('/api/bookings', {
         checkIn,
         checkOut,
-        // Use the clamped value for backend
-        numberOfPeople: numberOfPeopleDisplay,
+        numberOfPeople: numberOfPeopleDisplay, // <-- this must be present and correct
         name,
         phone,
         place: place._id,
