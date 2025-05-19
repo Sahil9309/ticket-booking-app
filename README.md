@@ -90,5 +90,5 @@ npm run dev
 
 #### Places Page
 
-![Places Page](screenshots/places.png)
+![Places Page](screenshots/places-page.png)
 
