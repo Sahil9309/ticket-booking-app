@@ -22,6 +22,7 @@ export default function BookingWidget({place}) {
 
   // Always clamp numberOfPeople to allowed range for display and backend
   let numberOfPeopleDisplay = Math.max(1, Math.min(Number(numberOfPeople), place.maxPeople));
+  const peopleLabel = numberOfPeopleDisplay === 1 ? "person" : "persons";
 
   let numberOfNights = 0;
   if (checkIn && checkOut) {
@@ -81,7 +82,9 @@ export default function BookingWidget({place}) {
             onChange={ev => setNumberOfPeople(ev.target.value)}
           />
           {/* Show the display value for clarity */}
-          <span className="ml-2 text-gray-500">({numberOfPeopleDisplay} people)</span>
+          <span className="ml-2 text-gray-500">
+            ({numberOfPeopleDisplay} {peopleLabel})
+          </span>
         </div>
         {numberOfNights > 0 && (
           <div className="py-3 px-4 border-t">
