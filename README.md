@@ -2,8 +2,6 @@
 
 NestQuest is a full-stack web application. It allows users to rent out their property as hosts and also book places to stay as guests.
 
----
-
 ## 🚀 Features
 
 - User authentication (sign-up/login)
@@ -11,8 +9,6 @@ NestQuest is a full-stack web application. It allows users to rent out their pro
 - Place booking functionality for guests
 - Secure API with JWT and cookies
 - Responsive and modern UI
-
----
 
 ## 🛠 Tech Stack
 
@@ -22,46 +18,53 @@ NestQuest is a full-stack web application. It allows users to rent out their pro
 - **Authentication:** JWT + bcryptjs
 - **Other Tools:** CORS, cookie-parser
 
----
-
 ## 📁 Project Structure
+
+```
 ticket-booking-app/
-├── api/ # Backend code (Express)
-│ ├── models/ # Mongoose schemas: User, Place, Booking
-│ └── index.js # Main server file
-├── client/ # Frontend code (React + Vite)
-│ ├── public/
-│ └── src/
+├── api/           # Backend code (Express)
+│   ├── models/    # Mongoose schemas: User, Place, Booking
+│   └── index.js   # Main server file
+├── client/        # Frontend code (React + Vite)
+│   ├── public/
+│   └── src/
 └── README.md
+```
 
+## 📦 Project Setup
 
----
+### ⚙️ Backend Setup
 
-⚙️ Backend & Frontend Setup
-
-**Navigate to project directory:**
+Navigate to the backend directory and install dependencies:
 
 ```bash
 cd api
 npm install
+```
 
-Create a .env file:
+Create a `.env` file in the `api` folder with the following content:
 
+```env
 PORT=4000
 MONGODB_URL=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
+```
 
-node index.js
+Start the backend server:
 
----
-##⚛️ Frontend Setup (Vite + React)
-2. **Navigate to frontend directory:**
+```bash
+npm start
+```
+
+### ⚛️ Frontend Setup (Vite + React)
+
+Navigate to the frontend directory and install dependencies:
+
 ```bash
 cd client
 npm install
 npm run dev
-
----
+```
 
 
 
