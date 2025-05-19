@@ -9,6 +9,7 @@ export default function BookingsPage() {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
     axios.get('/api/bookings').then(response => {
+      console.log("Bookings data:", response.data); // Debugging line
       setBookings(response.data);
     });
   }, []);

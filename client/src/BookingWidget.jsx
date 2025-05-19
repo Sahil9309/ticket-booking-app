@@ -20,11 +20,7 @@ export default function BookingWidget({place}) {
     }
   }, [user]);
 
-  // Always clamp numberOfPeople to allowed range for display and backend
-  let numberOfPeopleDisplay = Math.max(1, Math.min(Number(numberOfPeople), place.maxPeople));
-  const peopleLabel = numberOfPeopleDisplay === 1 ? "person" : "persons";
-
-  let numberOfNights = 0;
+  let numberOfNights = 1;
   if (checkIn && checkOut) {
     numberOfNights = differenceInCalendarDays(new Date(checkOut), new Date(checkIn));
   }
@@ -34,11 +30,11 @@ export default function BookingWidget({place}) {
       const response = await axios.post('/api/bookings', {
         checkIn,
         checkOut,
-        numberOfPeople: numberOfPeopleDisplay, // <-- this must be present and correct
+        numberOfPeople, // Ensure this is being sent correctly
         name,
         phone,
         place: place._id,
-        price: numberOfNights * place.price * numberOfPeopleDisplay,
+        price: numberOfNights * place.price * numberOfPeople,
       });
       const bookingId = response.data._id;
       setRedirect(`/account/bookings/${bookingId}`);
@@ -73,17 +69,10 @@ export default function BookingWidget({place}) {
         </div>
         <div className="py-3 px-4 border-t">
           <label className="font-bold rounded-2xl">Number of persons: </label>
-          <input
-            type="number"
-            min={1}
-            max={place.maxPeople}
-            value={numberOfPeople}
-            onChange={ev => setNumberOfPeople(ev.target.value)}
-          />
-          {/* Show the display value for clarity */}
-          <span className="ml-2 text-gray-500">
-            ({numberOfPeopleDisplay} {peopleLabel})
-          </span>
+          <input type="number"
+                  min={1} max={place.maxPeople}
+                 value={numberOfPeople || ''}
+                 onChange={ev => setNumberOfPeople(ev.target.value)}/>
         </div>
         {numberOfNights > 0 && (
           <div className="py-3 px-4 border-t">

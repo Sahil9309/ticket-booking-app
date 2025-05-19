@@ -238,6 +238,7 @@ app.post('/api/bookings', async (req, res) => {
   const {
     place,checkIn,checkOut,numberOfPeople,name,phone,price,
   } = req.body;
+
   Booking.create({
     place,checkIn,checkOut,numberOfPeople,name,phone,price,
     user:userData.id,
