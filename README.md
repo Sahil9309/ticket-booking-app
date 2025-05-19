@@ -66,5 +66,29 @@ npm install
 npm run dev
 ```
 
+### 📸 Screenshots
 
+#### Home Page
+
+![Home Page](./client/public/screenshots/homepage.png)
+
+#### Booking Page
+
+![Booking Page](./client/public/screenshots/booking-page.png)
+
+#### Booking Information
+
+![Booking Information](./client/public/screenshots/booking-information.png)
+
+#### Booking Widget
+
+![Booking Widget](./client/public/screenshots/booking-widget.png)
+
+#### Place Form Page
+
+![Place Form Page](./client/public/screenshots/place-form-page.png)
+
+#### Places Page
+
+![Places Page](./client/public/screenshots/places.png)
 
