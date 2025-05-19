@@ -239,8 +239,6 @@ app.post('/api/bookings', async (req, res) => {
     place,checkIn,checkOut,numberOfPeople,name,phone,price,
   } = req.body;
 
-  console.log("Incoming booking data:", req.body);
-
   Booking.create({
     place,checkIn,checkOut,numberOfPeople,name,phone,price,
     user:userData.id,
