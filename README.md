@@ -70,7 +70,7 @@ npm run dev
 
 #### Home Page
 
-![Home Page](screenshots/homepage.png)
+![Home Page](.screenshots/homepage.png)
 
 #### Booking Page
 
