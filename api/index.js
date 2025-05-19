@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require("mongoose");
@@ -255,4 +256,3 @@ app.get('/api/bookings', async (req,res) => {
 });
 
 app.listen(4000);
-
