@@ -1,7 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import axios from "axios";
-import { UserContext } from "../UserContext.jsx";
+import { UserContext } from "../UserContext.js";
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ export default function LoginPage() {
             Login
           </button>
           <div className="text-center py-2 text-gray-500">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link className="underline text-black cursor-pointer" to={'/register'}>
               Register here
             </Link>
