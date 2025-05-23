@@ -1,8 +1,9 @@
 import {useContext, useEffect, useState} from "react";
 import {differenceInCalendarDays} from "date-fns";
 import axios from "axios";
-import {Navigate} from "react-router-dom";
-import {UserContext} from "./UserContext.jsx";
+import {Navigate, Link} from "react-router-dom";
+import {UserContext} from "./UserContext.js";
+import PropTypes from "prop-types";
 
 
 export default function BookingWidget({place}) {
@@ -95,6 +96,21 @@ export default function BookingWidget({place}) {
           <span> ₹{numberOfNights * place.price * numberOfPeople}</span>
         )}
       </button>
+      <div className="text-center py-2 text-gray-500">
+        Don&apos;t have an account?{' '}
+        <Link className="underline text-black cursor-pointer" to={'/register'}>
+          Register here
+        </Link>
+      </div>
     </div>
   );
 }
+
+BookingWidget.propTypes = {
+  place: PropTypes.shape({
+    _id: PropTypes.string,
+    price: PropTypes.number,
+    maxPeople: PropTypes.number,
+    // add other properties as needed
+  }).isRequired,
+};
