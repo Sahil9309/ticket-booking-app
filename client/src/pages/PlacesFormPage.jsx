@@ -137,7 +137,7 @@ export default function PlacesFormPage() {
                                 className="mt-1 border p-1 rounded-xl" min='100' placeholder="0" />
                             </div>
                         </div>
-                    <button className="bg-[#1E3A8A] p-2 my-4 w-xl justify-center text-white rounded-2xl flex items-center mx-auto cursor-pointer"
+                    <button className="bg-blue-800 hover:bg-blue-900 p-2 my-4 w-xl justify-center text-white rounded-2xl flex items-center mx-auto cursor-pointer"
                 >Save</button>
             </form>
         </div>

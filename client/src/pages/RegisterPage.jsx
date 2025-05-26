@@ -21,33 +21,53 @@ export default function RegisterPage() {
     }
   }
 
-  return (
-    <div className="mt-4 grow flex items-center justify-around">
-      <div className="mb-64">
-        <h1 className="text-3xl text-center mb-4">Register</h1>
-        <div className="text-red-500 text-center mb-4"></div>
-        <form className="max-w-md mx-auto" onSubmit={registerUser}>
-          <input type="text" 
-            placeholder="Name" 
-            value={name} 
-            onChange={ev => setName(ev.target.value)} 
-            className="w-full border my-1 py-2 px-3 rounded-2xl" />
-          <input type="email" 
-            placeholder="email"
-            value={email} 
-            onChange={ev => setEmail(ev.target.value)} 
-            className="w-full border my-1 py-2 px-3 rounded-2xl" />
-          <input type="password" 
-            placeholder="password" 
-            value={password} 
-            onChange={ev => setPassword(ev.target.value)} 
-            className="w-full border my-1 py-2 px-3 rounded-2xl"/>
-          <button className="bg-[#1E3A8A] p-2 w-full text-white rounded-2xl cursor-pointer mt-6">Register</button>
-          <div className="text-center py-2 text-gray-500">
-            Already a user? <Link className="underline text-black cursor-pointer" to={'/login'}>Login</Link>
-          </div>
-        </form>
+ return (
+  <div className="bg-gray-50 py-12 px-4 flex items-center justify-center">
+    <div className="w-full max-w-md bg-white shadow-xl rounded-3xl p-10 border border-gray-200">
+      <h1 className="text-3xl font-semibold text-center text-blue-900 mb-6">Register</h1>
+
+      {/* Optional error message */}
+      <div className="text-red-500 text-center mb-4">
+        {/* Add error handling display here if needed */}
+      </div>
+
+      <form onSubmit={registerUser} className="space-y-5">
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(ev) => setName(ev.target.value)}
+          className="w-full border border-gray-300 py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(ev) => setEmail(ev.target.value)}
+          className="w-full border border-gray-300 py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(ev) => setPassword(ev.target.value)}
+          className="w-full border border-gray-300 py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-800 hover:bg-blue-900 transition-colors text-white py-3 rounded-xl font-semibold"
+        >
+          Register
+        </button>
+      </form>
+
+      <div className="text-center mt-6 text-gray-500">
+        Already a user?{" "}
+        <Link className="underline text-blue-800 font-medium" to={"/login"}>
+          Login
+        </Link>
       </div>
     </div>
-  )
+  </div>
+);
 }

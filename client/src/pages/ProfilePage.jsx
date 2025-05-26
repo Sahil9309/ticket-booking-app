@@ -72,7 +72,7 @@ export default function ProfilePage() {
 
           <button
             onClick={logout}
-            className="flex items-center justify-center gap-2 mt-10 bg-blue-800 hover:bg-blue-900 transition-colors w-full py-3 text-white rounded-xl font-semibold"
+            className="flex items-center justify-center gap-2 mt-10 bg-blue-800 hover:bg-blue-900 transition-colors w-full py-3 cursor-pointer text-white rounded-xl font-semibold"
           >
             <LogOut size={20} />
             Logout

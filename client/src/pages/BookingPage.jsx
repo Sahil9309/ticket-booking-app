@@ -32,7 +32,7 @@ export default function BookingPage() {
           <h2 className="text-2xl mb-4">Your booking information:</h2>
           <BookingDates booking={booking} />
         </div>
-        <div className="bg-[#1E3A8A] p-6 text-white rounded-2xl">
+        <div className="bg-blue-800 hover:bg-blue-900 p-6 text-white rounded-2xl">
           <div>Total price</div>
           <div className="text-3xl">₹{booking.price}</div>
         </div>
