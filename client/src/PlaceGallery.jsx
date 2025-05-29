@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Image from "./Image.jsx";
+import PropTypes from 'prop-types';
+
 
 export default function PlaceGallery({ place }) {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
@@ -92,3 +94,11 @@ export default function PlaceGallery({ place }) {
     </div>
   );
 }
+
+PlaceGallery.propTypes = {
+  place: PropTypes.shape({
+    title: PropTypes.string,
+    photos: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
+

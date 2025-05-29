@@ -1,4 +1,14 @@
 import { differenceInCalendarDays, format } from "date-fns";
+import PropTypes from 'prop-types';
+
+BookingDates.propTypes = {
+  booking: PropTypes.shape({
+    numberOfPeople: PropTypes.number,
+    checkIn: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+    checkOut: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  }).isRequired,
+  className: PropTypes.string,
+};
 
 export default function BookingDates({ booking, className }) {
   // Always show at least 1 person if value is missing or invalid

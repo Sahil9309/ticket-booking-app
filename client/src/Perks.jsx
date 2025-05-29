@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function Perks ({selected,onChange}) {
     function handleCbClick(ev) {
         const {checked,name} = ev.target;
@@ -47,3 +49,8 @@ export default function Perks ({selected,onChange}) {
         </>
     );
 }
+
+Perks.propTypes = {
+  selected: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
