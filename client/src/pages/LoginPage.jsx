@@ -27,7 +27,7 @@ export default function LoginPage() {
   }
 
   return (
-  <div className="bg-gray-50 py-12 px-4 flex items-center justify-center">
+  <div className="py-12 px-4 flex items-center justify-center">
     <div className="w-full max-w-md bg-white shadow-xl rounded-3xl p-10 border border-gray-200">
       <h1 className="text-3xl font-semibold text-center text-blue-900 mb-6">Login</h1>
 

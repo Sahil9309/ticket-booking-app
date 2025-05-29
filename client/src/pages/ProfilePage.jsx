@@ -33,7 +33,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen">
       <div className="mb-8">
         <AccountNav />
       </div>
